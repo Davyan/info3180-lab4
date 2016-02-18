@@ -37,12 +37,14 @@ def files():
         return render_template("files.html")
     return redirect(url_for('login'))
 
+
 @app.route('/add', methods=['POST'])
 def add_entry():
     """add a file"""
     title = request.form['title']
     file = request.files['file']
     filename = file.filename
+    filefolder = "static/uploads"
     file.save(os.path.join("filefolder", filename))
     return render_template("files.html",title=title)
     #g.db.execute('insert into entries (title, text) values (?, ?)',
